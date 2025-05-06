@@ -11,4 +11,6 @@ public class BookingDto {
     private LocalDate output;
     private String price;
     private Long customerId;
+    private String customerName;
+    private Long days;
 }

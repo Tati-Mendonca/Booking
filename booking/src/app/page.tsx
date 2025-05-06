@@ -1,14 +1,15 @@
 import { BookingCard } from '@/components/booking-card'
 import Button from '@/components/button'
-// import { Calendar } from "lucide-react";
+import { getBookings } from '@/lib/bookings'
+import { Booking } from '@/lib/type'
 
-export default function Home() {
-  const mesAtual = 'Maio'
+export default async function Home() {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const currentMonth = `${year}-${month}`
 
-  // const bookings = [
-  //   { input: '2025-05-10', output: '2025-05-12', price: '500.00', customerName: 'Tatiane' },
-  //   { input: '2025-05-15', output: '2025-05-17', price: '750.00', customerName: 'João' }
-  // ]
+  const bookings: Booking[] = await getBookings()
 
   return (
     <main className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-8 relative">
@@ -17,25 +18,30 @@ export default function Home() {
         {/* <p className="text-sm text-gray-700">Visualize todas as reservas para o mês de {mesAtual}:</p> */}
 
         <div className="flex items-center gap-2 mb-6">
-          <p className="text-sm text-gray-500 mr-15">
-            Todas as reservas referentes ao mês de {mesAtual}:
-          </p>
+          <p className="text-sm text-gray-500 mr-13">Todas as reservas referentes ao mês atual:</p>
           <div className="relative inline-block">
             <input
-              type="date"
+              type="month"
+              defaultValue={currentMonth}
               //   value={selectedDate}
               //   onChange={e => setSelectedDate(e.target.value)}
-              className="pl-8 pr-2 py-1 w-[130px] text-sm border rounded"
+              className=" px-2 py-1 w-[130px] text-sm border rounded"
             />
           </div>
         </div>
-        <BookingCard
-          customerName={"João 'amigo da Fia'"}
-          input={'04-05-2025'}
-          output={'04-05-2025'}
-          price={'200,00'}
-          days={0}
-        />
+        <ul>
+          {bookings.slice(0, 10).map((booking) => (
+            <li key={booking.id} className="mb-3">
+              <BookingCard
+                input={booking.input}
+                output={booking.output}
+                price={booking.price}
+                customerName={booking.customerName}
+                days={booking.days}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
       <Button />
     </main>

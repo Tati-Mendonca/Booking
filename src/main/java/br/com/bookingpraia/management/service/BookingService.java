@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,9 +51,20 @@ public class BookingService {
 
     public List<BookingDto> findByAll() {
         List<Booking> bookings = bookingRepository.findAll();
-        return bookings.stream()
-                .map(booking -> modelMapper.map(booking, BookingDto.class))
-                .collect(Collectors.toList());
+
+        return bookings.stream().map(booking -> {
+            BookingDto dto = new BookingDto();
+            dto.setId(booking.getId());
+            dto.setInput(booking.getInput());
+            dto.setOutput(booking.getOutput());
+            dto.setPrice(booking.getPrice());
+            dto.setCustomerId(booking.getCustomer().getId());
+            dto.setCustomerName(booking.getCustomer().getName());
+            long days = ChronoUnit.DAYS.between(booking.getInput(), booking.getOutput());
+            dto.setDays(days);
+            return dto;
+
+        }).collect(Collectors.toList());
     }
 
     public BookingDto update(BookingDto customer) {

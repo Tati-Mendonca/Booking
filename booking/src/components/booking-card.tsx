@@ -1,15 +1,15 @@
 type Props = {
-  customerName: string
   input: string
   output: string
   price: string
-  days: number
+  customerName: string
+  days: string
 }
 
-export function BookingCard({ customerName, input, output, price, days }: Props) {
+export function BookingCard({ input, output, price, customerName, days }: Props) {
   return (
     <>
-      <div className=" w-full bg-gray-200 rounded-lg p-4 pt-2 shadow-sm">
+      <div className="w-full bg-gray-200 rounded-lg p-4 pt-2 shadow-sm">
         <header className="flex justify-between">
           <span>{customerName}</span>
           <span className="text-sm">Diárias: {days}</span>
