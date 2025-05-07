@@ -1,9 +1,8 @@
 export type Booking = {
   id: number
-  input: string
-  output: string
-  price: string
+  input: Date
+  output: Date
+  price: number
   customerName: string
-  days: string
-  //   customerId: number
+  days: number
 }
