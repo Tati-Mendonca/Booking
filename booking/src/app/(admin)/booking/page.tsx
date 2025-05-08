@@ -15,9 +15,9 @@ export default function Page() {
         <hr className="mb-4" />
         <BookingForm />
         <div className="flex justify-end">
-          <button className=" bg-gray-500 text-white p-2 px-6 rounded shadow-md mt-4  hover:bg-gray-600 transition">
+          {/* <button className=" bg-gray-500 text-white p-2 px-6 rounded shadow-md mt-4  hover:bg-gray-600 transition">
             Salvar
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

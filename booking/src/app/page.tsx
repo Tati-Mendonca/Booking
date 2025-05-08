@@ -40,6 +40,7 @@ export default async function Home() {
             {bookings.slice(0, 10).map((booking) => (
               <li key={booking.id} className="mb-3">
                 <BookingCard
+                  id={booking.id}
                   input={booking.input}
                   output={booking.output}
                   price={booking.price}

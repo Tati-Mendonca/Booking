@@ -1,10 +1,13 @@
+'use client'
+
+import { deleteBooking } from '@/lib/bookings'
 import { formatDate } from '@/app/utils/date'
-import { UserRoundPen } from 'lucide-react'
-import { FilePenLine } from 'lucide-react'
-import { Pencil } from 'lucide-react'
-import { X } from 'lucide-react'
+import { Pencil, X } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { useTransition } from 'react'
 
 type BookingProps = {
+  id: number
   input: Date
   output: Date
   price: number
@@ -12,7 +15,21 @@ type BookingProps = {
   days: number
 }
 
-export function BookingCard({ input, output, price, customerName, days }: BookingProps) {
+export function BookingCard({ id, input, output, price, customerName, days }: BookingProps) {
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition()
+
+  async function handleDelete() {
+    if (!confirm('Tem certeza que deseja excluir esta reserva?')) return
+    try {
+      await deleteBooking(id)
+      startTransition(() => {
+        router.refresh()
+      })
+    } catch (err) {
+      alert('Erro ao excluir reserva')
+    }
+  }
   return (
     <>
       <div className="w-full bg-gray-200 rounded-lg p-4 pt-2 shadow-sm">
@@ -30,10 +47,14 @@ export function BookingCard({ input, output, price, customerName, days }: Bookin
           </ul>
           <p className="text-black"> R$ {Number(price).toFixed(2).replace('.', ',')}</p>
           <div className="flex flex-col items-center justify-baseline">
-            <button className="text-sm">
+            <button className="text-sm cursor-pointer">
               <Pencil className="size-[14px]" />
             </button>
-            <button className="text-sm mt-1">
+            <button
+              className="text-sm mt-1 cursor-pointer"
+              onClick={handleDelete}
+              disabled={isPending}
+            >
               <X className="size-5" />
             </button>
           </div>
