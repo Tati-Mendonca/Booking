@@ -113,12 +113,6 @@ const BookingForm = () => {
         <button className=" bg-gray-500 text-white p-2 px-6 rounded shadow-md mt-4  hover:bg-gray-600 transition">
           Salvar
         </button>
-        {/* <button
-          type="submit"
-          className=" bg-gray-500 text-white p-2 px-6 rounded shadow-md mt-4  hover:bg-gray-600 transition"
-        >
-          Salvar
-        </button> */}
       </div>
     </form>
   )
