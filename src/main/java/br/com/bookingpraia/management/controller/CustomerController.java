@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("api/customer/v1")
 public class CustomerController {
@@ -23,6 +24,11 @@ public class CustomerController {
     @GetMapping("/{id}")
     public CustomerDto findById(@PathVariable Long id){
         return service.findById(id);
+    }
+
+    @GetMapping("/search")
+    public List<CustomerDto> findByName(@RequestParam String name) {
+        return service.findByName(name);
     }
 
     @GetMapping

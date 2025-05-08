@@ -31,6 +31,13 @@ public class CustomerService {
         return modelMapper.map(customer, CustomerDto.class);
     }
 
+    public List<CustomerDto> findByName(String name) {
+        List<Customer> customers = repository.findByNameContainingIgnoreCase(name);
+        return customers.stream()
+                .map(customer -> modelMapper.map(customer, CustomerDto.class))
+                .collect(Collectors.toList());
+    }
+
     public List<CustomerDto> findByAll() {
         List<Customer> customers = repository.findAll();
         return customers.stream()
