@@ -47,7 +47,10 @@ export function BookingCard({ id, input, output, price, customerName, days }: Bo
           </ul>
           <p className="text-black"> R$ {Number(price).toFixed(2).replace('.', ',')}</p>
           <div className="flex flex-col items-center justify-baseline">
-            <button className="text-sm cursor-pointer">
+            <button
+              className="text-sm cursor-pointer"
+              onClick={() => router.push(`/booking/${id}`)}
+            >
               <Pencil className="size-[14px]" />
             </button>
             <button

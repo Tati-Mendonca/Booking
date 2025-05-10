@@ -1,18 +1,37 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { searchCustomerByName, createCustomer } from '@/lib/customer'
+import { BookingFormData } from '@/lib/type'
 
-const BookingForm = () => {
-  const [formData, setFormData] = useState({
-    input: '',
-    output: '',
-    price: '',
-    customerName: '',
+type BookingFormProps = {
+  initialData?: BookingFormData
+  onSubmit?: (formData: BookingFormData, customerId: number) => void
+}
+
+const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
+  const [formData, setFormData] = useState<BookingFormData>({
+    id: initialData?.id || undefined,
+    input: initialData?.input || '',
+    output: initialData?.output || '',
+    price: initialData?.price || '',
+    customerName: initialData?.customerName || '',
   })
 
   const router = useRouter()
+
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        id: initialData.id,
+        input: initialData.input,
+        output: initialData.output,
+        price: initialData.price,
+        customerName: initialData.customerName,
+      })
+    }
+  }, [initialData])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -25,6 +44,7 @@ const BookingForm = () => {
       const existingCustomers = await searchCustomerByName(formData.customerName)
 
       let customerId
+      console.log(customerId)
 
       if (existingCustomers.length > 0) {
         customerId = existingCustomers[0].id
@@ -33,21 +53,25 @@ const BookingForm = () => {
         customerId = newCustomer.id
       }
 
-      const res = await fetch('/api/booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          input: formData.input,
-          output: formData.output,
-          price: formData.price,
-          customerId: customerId,
-        }),
-      })
-
-      if (res.ok) {
-        router.push('/')
+      if (onSubmit) {
+        await onSubmit(formData, customerId)
       } else {
-        console.error('Erro ao criar reserva')
+        console.log(formData)
+        console.log(customerId)
+
+        const res = await fetch('/api/booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            input: formData.input,
+            output: formData.output,
+            price: formData.price,
+            customerId,
+          }),
+        })
+
+        if (!res.ok) throw new Error('Erro ao criar reserva')
+        router.push('/')
       }
     } catch (err) {
       console.error('Erro ao enviar o formulário:', err)
@@ -66,7 +90,8 @@ const BookingForm = () => {
             onChange={handleChange}
             placeholder="Digite o nome"
             required
-            className="w-65 px-2 m-2 bg-white rounded"
+            className="bg-white w-65 m-2 px-2 rounded"
+            disabled={!!initialData?.id}
           />
         </label>
 
@@ -110,7 +135,10 @@ const BookingForm = () => {
       </div>
 
       <div className="flex justify-end">
-        <button className=" bg-gray-500 text-white p-2 px-6 rounded shadow-md mt-4  hover:bg-gray-600 transition">
+        <button
+          type="submit"
+          className="bg-gray-500 text-white p-2 px-6 rounded shadow-md mt-4  hover:bg-gray-600 transition"
+        >
           Salvar
         </button>
       </div>

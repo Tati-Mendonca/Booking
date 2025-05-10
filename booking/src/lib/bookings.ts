@@ -15,20 +15,20 @@ export async function newBooking(data: any) {
   if (!res.ok) throw new Error('Erro ao criar reserva')
   return res.json()
 }
+export async function getBookingById(id: number) {
+  const res = await fetch(`${baseURL}/booking/v1/${id}`)
+  if (!res.ok) throw new Error('Erro ao buscar reserva')
+  return res.json()
+}
 
 export async function updateBooking(id: number, data: any) {
   const res = await fetch(`${baseURL}/booking/v1/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
 
-  if (!res.ok) {
-    throw new Error('Não foi possivel editar reserva')
-  }
-
+  if (!res.ok) throw new Error('Não foi possivel editar reserva')
   return res.json()
 }
 

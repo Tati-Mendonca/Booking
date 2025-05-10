@@ -2,7 +2,7 @@ import BookingForm from '@/components/booking-form'
 import { X } from 'lucide-react'
 import Link from 'next/link'
 
-export default function Page() {
+export default function NewBooking() {
   return (
     <div className="min-h-screen backdrop flex items-center justify-center px-4 py-8">
       <div className="w-[500px] bg-gray-200 rounded-lg p-4 pt-2 shadow-sm space-y-4">
