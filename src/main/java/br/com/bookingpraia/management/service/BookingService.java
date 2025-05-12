@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,12 +28,13 @@ public class BookingService {
     private ModelMapper modelMapper;
 
     public BookingDto create(BookingDto bookingDto){
+        if (bookingDto.getOutput().isBefore(bookingDto.getInput()) || bookingDto.getOutput().isEqual(bookingDto.getInput())) {
+            throw new IllegalArgumentException("A data de saída deve ser posterior à data de entrada.");
+        }
         Customer customer = customerRepository.findById(bookingDto.getCustomerId())
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-
         Booking booking = modelMapper.map(bookingDto, Booking.class);
         booking.setCustomer(customer);
-
         Booking saved = bookingRepository.save(booking);
         return modelMapper.map(saved, BookingDto.class);
     }
@@ -49,31 +52,15 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
-    public List<BookingDto> findByAll() {
-        List<Booking> bookings = bookingRepository.findAll();
-
-        return bookings.stream().map(booking -> {
-            BookingDto dto = new BookingDto();
-            dto.setId(booking.getId());
-            dto.setInput(booking.getInput());
-            dto.setOutput(booking.getOutput());
-            dto.setPrice(booking.getPrice());
-            dto.setCustomerId(booking.getCustomer().getId());
-            dto.setCustomerName(booking.getCustomer().getName());
-            long days = ChronoUnit.DAYS.between(booking.getInput(), booking.getOutput());
-            dto.setDays(days);
-            return dto;
-
-        }).collect(Collectors.toList());
-    }
-
-    public BookingDto update(BookingDto customer) {
-        Booking existing = bookingRepository.findById(customer.getId())
+    public BookingDto update(BookingDto booking) {
+        if (booking.getOutput().isBefore(booking.getInput()) || booking.getOutput().isEqual(booking.getInput())) {
+            throw new IllegalArgumentException("A data de saída deve ser posterior à data de entrada.");
+        }
+        Booking existing = bookingRepository.findById(booking.getId())
                 .orElseThrow(() -> new RuntimeException("Id não encontrado"));
-        modelMapper.map(customer, existing);
+        modelMapper.map(booking, existing);
         Booking updated = bookingRepository.save(existing);
         return modelMapper.map(updated, BookingDto.class);
-
     }
 
     public void delete(Long id) {
@@ -81,5 +68,25 @@ public class BookingService {
             throw new RuntimeException("Cliente não encontrado");
         }
         bookingRepository.deleteById(id);
+    }
+
+    public List<BookingDto> findBookingsByMonth(String month) {
+        List<Booking> bookings;
+        try {
+            if (month != null) {
+                month = month.trim();
+                YearMonth yearMonth = YearMonth.parse(month);
+                LocalDate start = yearMonth.atDay(1);
+                LocalDate end = yearMonth.atEndOfMonth();
+                bookings = bookingRepository.findByInputBetween(start, end);
+            } else {
+                bookings = bookingRepository.findAll();
+            }
+        } catch (Exception e) {
+            bookings = bookingRepository.findAll();
+        }
+        return bookings.stream()
+                .map(b -> modelMapper.map(b, BookingDto.class))
+                .collect(Collectors.toList());
     }
 }

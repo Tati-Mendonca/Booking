@@ -14,7 +14,6 @@ public class Customer {
     private Long id;
     private String name;
     private String username;
-//    @Pattern(regexp = "(?:(^\\\\+\\\\d{2})?)(?:([1-9]{2})|([0-9]{3})?)(\\\\d{4,5}).?(\\\\d{4})")
     private String phone;
 
     @OneToMany(mappedBy = "customer")

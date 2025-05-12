@@ -14,6 +14,7 @@ public class Booking {
     private LocalDate input;
     private LocalDate output;
     private String price;
+    private Long days;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)

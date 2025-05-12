@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("api/booking/v1")
+@RequestMapping("/api/booking/v1")
 public class BookingController {
 
     @Autowired
@@ -29,14 +29,15 @@ public class BookingController {
     public List<BookingDto> findByCustomerId(@PathVariable Long customerId) {
         return service.findByCustomerId(customerId);
     }
-
     @GetMapping
-    public List<BookingDto> findByAll(){
-        return service.findByAll();
+    public ResponseEntity<List<BookingDto>>findBookingByMonth(
+            @RequestParam(required = false) String month){
+        List<BookingDto> bookings = service.findBookingsByMonth(month);
+        return ResponseEntity.ok(bookings);
     }
 
-    @PutMapping
-    public BookingDto update(@RequestBody BookingDto booking){
+    @PutMapping("/{id}")
+    public BookingDto update(@PathVariable Long id, @RequestBody BookingDto booking){
         return service.update(booking);
     }
 
