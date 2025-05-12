@@ -9,9 +9,9 @@ export type Booking = {
 
 export type BookingFormData = {
   id?: number
-  input: Date
-  output: Date
-  price: number
+  input: Date | string
+  output: Date | string
+  price: number | string
   customerName: string
   customerId?: number
   days?: number | null

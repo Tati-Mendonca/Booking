@@ -21,7 +21,6 @@ export default async function Home() {
     <main className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-8 relative">
       <div className="text-center mb-6">
         <h1 className="text-2xl font-semibold">Reservas</h1>
-        {/* <p className="text-sm text-gray-700">Visualize todas as reservas para o mês de {mesAtual}:</p> */}
 
         <div className="flex items-center justify-between gap-2 mb-6">
           <p className="text-sm text-gray-500">Todas as reservas referentes ao mês atual:</p>
@@ -29,8 +28,6 @@ export default async function Home() {
             <input
               type="month"
               defaultValue={currentMonth}
-              //   value={selectedDate}
-              //   onChange={e => setSelectedDate(e.target.value)}
               className=" px-2 py-1 w-[163px] text-sm border rounded"
             />
           </div>

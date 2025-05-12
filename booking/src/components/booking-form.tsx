@@ -15,7 +15,7 @@ const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
     id: initialData?.id || undefined,
     input: initialData?.input || '',
     output: initialData?.output || '',
-    price: initialData?.price || '',
+    price: Number(initialData?.price) || '',
     customerName: initialData?.customerName || '',
   })
 
@@ -114,7 +114,7 @@ const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
           <input
             type="date"
             name="input"
-            value={formData.input}
+            value={String(formData.input)}
             onChange={handleChange}
             required
             className="px-2 m-2 bg-white rounded"
@@ -126,7 +126,7 @@ const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
           <input
             type="date"
             name="output"
-            value={formData.output}
+            value={String(formData.output)}
             onChange={handleChange}
             required
             className="bg-white px-2 ml-2 rounded"
