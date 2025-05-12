@@ -1,20 +1,29 @@
 import { BookingCard } from '@/components/booking-card'
-import Button from '@/components/button'
-import { getBookings } from '@/lib/bookings'
+import { calculateDays } from './utils/date'
 import { Booking } from '@/lib/type'
+import { getBookings } from '@/lib/bookings'
+import Input from '@/components/input-date'
+import Button from '@/components/button'
 
-export default async function Home() {
+type Props = {
+  searchParams?: Record<string, string | string[] | undefined>
+}
+
+export default async function Home({ searchParams }: Props) {
   const today = new Date()
   const year = today.getFullYear()
   const month = String(today.getMonth() + 1).padStart(2, '0')
-  const currentMonth = `${year}-${month}`
+  const currentMonth =
+    typeof searchParams?.month === 'string' ? searchParams.month : `${year}-${month}`
 
   let bookings: Booking[] = []
+  let hasError = false
 
   try {
-    bookings = await getBookings()
+    bookings = await getBookings(currentMonth)
   } catch (error) {
     console.error('Erro ao buscar reservas:', error)
+    hasError = true
   }
 
   return (
@@ -25,14 +34,15 @@ export default async function Home() {
         <div className="flex items-center justify-between gap-2 mb-6">
           <p className="text-sm text-gray-500">Todas as reservas referentes ao mês atual:</p>
           <div className="relative inline-block">
-            <input
-              type="month"
-              defaultValue={currentMonth}
-              className=" px-2 py-1 w-[163px] text-sm border rounded"
-            />
+            <Input currentMonth={currentMonth} />
           </div>
         </div>
-        {bookings.length > 0 ? (
+
+        {hasError ? (
+          <p className="text-red-500 mt-6 text-sm">
+            Desculpe, não foi possível carregar as reservas. Tente novamente mais tarde.
+          </p>
+        ) : bookings.length > 0 ? (
           <ul>
             {bookings.slice(0, 10).map((booking) => (
               <li key={booking.id} className="mb-3">
@@ -42,14 +52,14 @@ export default async function Home() {
                   output={booking.output}
                   price={booking.price}
                   customerName={booking.customerName}
-                  days={booking.days}
+                  days={calculateDays(booking.input, booking.output)}
                 />
               </li>
             ))}
           </ul>
         ) : (
-          <p className=" text-red-500 mt-6 text-sm">
-            Desculpe não foi possível carregar as reservas. Tente novamente mais tarde.
+          <p className="text-2 text-gray-600 mt-6 italic">
+            Não há registro de nenhuma reserva para este mês.
           </p>
         )}
       </div>

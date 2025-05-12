@@ -16,6 +16,7 @@ type BookingProps = {
 }
 
 export function BookingCard({ id, input, output, price, customerName, days }: BookingProps) {
+  console.log('BookingCard props:', { id, input, output, price, customerName, days })
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
 

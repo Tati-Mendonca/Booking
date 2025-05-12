@@ -40,6 +40,13 @@ const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    const inputDate = new Date(formData.input)
+    const outputDate = new Date(formData.output)
+
+    if (outputDate <= inputDate) {
+      alert('A data de saída deve ser posterior à data de entrada.')
+      return
+    }
     try {
       const existingCustomers = await searchCustomerByName(formData.customerName)
 
@@ -56,9 +63,6 @@ const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
       if (onSubmit) {
         await onSubmit(formData, customerId)
       } else {
-        console.log(formData)
-        console.log(customerId)
-
         const res = await fetch('/api/booking', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

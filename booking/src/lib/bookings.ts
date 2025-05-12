@@ -1,7 +1,7 @@
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL
 
-export async function getBookings() {
-  const res = await fetch(`${baseURL}/booking/v1`)
+export async function getBookings(month: string) {
+  const res = await fetch(`${baseURL}/booking/v1?month=${month}`)
   if (!res.ok) throw new Error('Erro ao buscar reserva')
   return res.json()
 }
