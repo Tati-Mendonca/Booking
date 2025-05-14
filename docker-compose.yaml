@@ -1,9 +1,9 @@
-services:
-  db:
-    image: postgres:10.5-alpine
-    environment:
-      - POSTGRES_DB=booking
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin123
-    ports:
-      - 5432:5432
+#services:
+#  db:
+#    image: postgres:10.5-alpine
+#    environment:
+#      - POSTGRES_DB=booking
+#      - POSTGRES_USER=admin
+#      - POSTGRES_PASSWORD=admin123
+#    ports:
+#      - 5432:5432

@@ -29,7 +29,7 @@ public class BookingController {
     public List<BookingDto> findByCustomerId(@PathVariable Long customerId) {
         return service.findByCustomerId(customerId);
     }
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<BookingDto>>findBookingByMonth(
             @RequestParam(required = false) String month){
         List<BookingDto> bookings = service.findBookingsByMonth(month);
