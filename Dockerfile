@@ -9,5 +9,5 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /app
 COPY --from=build /app/target/management-0.0.1-SNAPSHOT.jar /app/management.jar
 EXPOSE 8080
-CMD ["java", "-jar", "/app/management.jar"]
+CMD ["java", "-jar", "/app/management.jar", "--server.port=8080", "--server.address=0.0.0.0"]
 LABEL authors="Tatiane Mendonça"
