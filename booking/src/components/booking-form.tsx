@@ -83,10 +83,10 @@ const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="booking-form">
-      <div className="flex justify-between items-baseline">
-        <label>
-          Name:
+    <form onSubmit={handleSubmit}>
+      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 my-2">
+        <label className="flex flex-col text-xs sm:text-sm w-full sm:w-auto">
+          Nome:
           <input
             type="search"
             name="customerName"
@@ -94,12 +94,12 @@ const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
             onChange={handleChange}
             placeholder="Digite o nome"
             required
-            className="bg-white w-65 m-2 px-2 rounded"
+            className="bg-white w-full sm:w-64 px-2 py-2 sm:py-1 rounded text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
             disabled={!!initialData?.id}
           />
         </label>
 
-        <label>
+        <label className="flex flex-col text-xs sm:text-sm w-full sm:w-auto">
           Preço:
           <input
             type="text"
@@ -107,13 +107,13 @@ const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
             value={formData.price}
             onChange={handleChange}
             required
-            className="w-20 bg-white px-2 ml-2 rounded"
+            className="bg-white border border-gray-300 shadow-sm focus:shadow-md w-full sm:w-24 px-2 py-2 sm:py-1 rounded text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
           />
         </label>
       </div>
 
-      <div className="flex justify-between items-baseline">
-        <label>
+      <div className="flex flex-col sm:flex-row justify-between">
+        <label className="flex flex-col text-xs sm:text-sm w-full sm:w-auto">
           Entrada:
           <input
             type="date"
@@ -121,11 +121,11 @@ const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
             value={String(formData.input)}
             onChange={handleChange}
             required
-            className="px-2 m-2 bg-white rounded"
+            className="bg-white border border-gray-300 shadow-sm focus:shadow-md w-44 px-2 py-2 sm:py-1 rounded text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
           />
         </label>
 
-        <label>
+        <label className="flex flex-col text-xs sm:text-sm w-full sm:w-auto">
           Saída:
           <input
             type="date"
@@ -133,7 +133,7 @@ const BookingForm = ({ initialData, onSubmit }: BookingFormProps) => {
             value={String(formData.output)}
             onChange={handleChange}
             required
-            className="bg-white px-2 ml-2 rounded"
+            className="bg-white border border-gray-300 shadow-sm focus:shadow-md w-44 px-2 py-2 sm:py-1 rounded text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
           />
         </label>
       </div>

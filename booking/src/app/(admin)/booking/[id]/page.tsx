@@ -30,12 +30,12 @@ export default function EditPage() {
   if (!initialData) return <div>Carregando...</div>
 
   return (
-    <div className="min-h-screen backdrop flex items-center justify-center px-4 py-8">
-      <div className="w-[500px] bg-gray-200 rounded-lg p-4 pt-2 shadow-sm space-y-4">
+    <div className="backdrop h-screen flex items-center justify-center ">
+      <div className="bg-gray-200 rounded-lg px-4 py-8">
         <header className="flex justify-between items-center">
           <h2 className="text-2xl font-semibold">Editar Reserva</h2>
           <Link href="/">
-            <X className="size-8 mr-[-6px]" />
+            <X className="" />
           </Link>
         </header>
         <hr className="mb-4" />

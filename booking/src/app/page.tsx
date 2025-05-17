@@ -31,9 +31,9 @@ export default async function Home({ searchParams }: Props) {
       <div className="text-center mb-6">
         <h1 className="text-2xl font-semibold">Reservas</h1>
 
-        <div className="flex items-center justify-between gap-2 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 md:mb-4">
           <p className="text-sm text-gray-500">Todas as reservas referentes ao mês atual:</p>
-          <div className="relative inline-block">
+          <div className="flex flex-col text-xs sm:text-sm w-full sm:w-auto">
             <Input currentMonth={currentMonth} />
           </div>
         </div>
@@ -45,7 +45,7 @@ export default async function Home({ searchParams }: Props) {
         ) : bookings.length > 0 ? (
           <ul>
             {bookings.slice(0, 10).map((booking) => (
-              <li key={booking.id} className="mb-3">
+              <li key={booking.id} className="my-3">
                 <BookingCard
                   id={booking.id}
                   input={booking.input}
