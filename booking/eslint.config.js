@@ -7,13 +7,15 @@ const __dirname = dirname(__filename)
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
+  recommendedConfig: {
+    eslint: { extends: ['eslint:recommended'] },
+    typescript: { extends: ['plugin:@typescript-eslint/recommended'] },
+  },
 })
 
 export default [
   ...compat.extends(
     'next/core-web-vitals',
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended'
   ),
   {

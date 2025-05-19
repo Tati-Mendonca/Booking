@@ -5,16 +5,19 @@ import { getBookings } from '@/lib/bookings'
 import Input from '@/components/input-date'
 import Button from '@/components/button'
 
-type Props = {
-  searchParams?: Record<string, string | string[] | undefined>
+type PageProps = {
+  searchParams?: Promise<{ month?: string }>
 }
 
-export default async function Home({ searchParams }: Props) {
+export default async function HomePage({ searchParams }: PageProps) {
+  const resolvedSearchParams = await searchParams
   const today = new Date()
   const year = today.getFullYear()
   const month = String(today.getMonth() + 1).padStart(2, '0')
   const currentMonth =
-    typeof searchParams?.month === 'string' ? searchParams.month : `${year}-${month}`
+    typeof resolvedSearchParams?.month === 'string'
+      ? resolvedSearchParams.month
+      : `${year}-${month}`
 
   let bookings: Booking[] = []
   let hasError = false
