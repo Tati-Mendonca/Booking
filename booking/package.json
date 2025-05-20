@@ -11,7 +11,9 @@
     "dev:clean": "rm -rf .next && next dev"
   },
   "dependencies": {
+    "@netlify/next": "^1.4.9",
     "lucide-react": "^0.507.0",
+    "netlify": "^21.5.0",
     "next": "15.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
