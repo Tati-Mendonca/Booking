@@ -19,11 +19,22 @@ Além disso, a proposta é flexível: o sistema pode ser facilmente adaptado par
 
 - Pesquisa por data de agendamento.
 
+- Cadastro de novas reservas de forma prática.
+  
+- Reconhecimento automático de clientes já cadastrados.
+
 - Exibição de dados como nome do cliente, período e valor da estadia.
+  
+- Histórico para consulta de todas as reservas feitas por cada cliente.
+
+  
+## Documentação
+
+<a href="https://ibb.co/5WSd6YfH"><img src="https://i.ibb.co/ynZDXhbj/doc-booking.png" alt="doc-booking" border="0"></a>
+
 ## Protótipo
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
 
 ## Projeto
 
