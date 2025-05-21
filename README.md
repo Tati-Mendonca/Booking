@@ -1,0 +1,69 @@
+
+# Booking 
+
+Uma solução simples para quem precisa organizar os agendamentos de aluguel do seu imóvel de temporada.
+
+
+# Sobre o Projeto
+
+Este projeto nasceu da minha vontade de ajudar familiares a manter o controle dos agendamentos do apartamento da família no litoral. Pois a rotina de anotar reservas em papéis soltos ou trocar informações por mensagens acabava gerando confusão, esquecimentos e retrabalho. Pensando nisso, desenvolvi esta aplicação com o objetivo de tornar o processo de reservas mais claro, eficiente e acessível. O Booking é uma ferramenta simples e intuitiva, ideal para pequenos locadores que desejam ter mais controle e organização — sem necessidade de lidar com soluções complexas.
+
+Além disso, a proposta é flexível: o sistema pode ser facilmente adaptado para outros tipos de controle de reservas, como salões de festa, espaços comerciais, equipamentos e etc.
+
+
+## Funcionalidades
+
+- Interface moderna e responsiva.
+
+- Visualização de reservas por mês.
+
+- Pesquisa por data de agendamento.
+
+- Exibição de dados como nome do cliente, período e valor da estadia.
+## Protótipo
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+
+## Projeto
+
+Insira um gif da aplicação funcionando
+
+
+## Stack utilizada
+
+| Frontend     | Backend           | Infraestrutura     |
+| ------------ | ----------------- | ------------------ |
+| React 19     | Spring Boot 3.4.0 | Netlify  |
+| Next.js 15   | Java 17           | Railway   |
+| Tailwind CSS | PostgreSQL 15+    | Docker     |
+| TypeScript   | OpenAPI / Swagger | Maven              |
+
+
+## Como Executar Localmente
+
+
+1. Clone o repositório:
+
+```bash
+  git clone https://github.com/Tati-Mendonca/Booking
+```
+
+2. Rodar o Frontend
+```bash
+  cd booking
+  npm install
+  npm run dev
+```
+
+3. Rodar o Backend
+```bash
+  cd backend
+  ./mvnw spring-boot:run
+```
+
+    
+## Autores
+
+| [<img src="https://avatars.githubusercontent.com/u/97405991?v=4" width=115><br><sub>Tatiane Mendonça</sub>](https://github.com/Tati-Mendonca)
+| :---: |
