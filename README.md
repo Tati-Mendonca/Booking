@@ -28,7 +28,7 @@ Além disso, a proposta é flexível: o sistema pode ser facilmente adaptado par
   
 ## Documentação
 
-<a href="https://ibb.co/5WSd6YfH"><img src="https://i.ibb.co/ynZDXhbj/doc-booking.png" alt="doc-booking" border="0"></a>
+<img src="https://i.ibb.co/ynZDXhbj/doc-booking.png" alt="doc-booking" border="0">
 
 ## Protótipo
 
