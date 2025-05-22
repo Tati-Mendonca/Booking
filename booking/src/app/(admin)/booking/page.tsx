@@ -9,7 +9,7 @@ export default function NewBooking() {
         <header className="flex justify-between items-center">
           <h2 className="text-2xl font-semibold"> Nova Reserva</h2>
           <Link href="/">
-            <X className="" />
+            <X />
           </Link>
         </header>
         <hr className="mb-4" />
