@@ -32,7 +32,7 @@ Além disso, a proposta é flexível: o sistema pode ser facilmente adaptado par
 
 ## Protótipo
 
-Clique na imagem para interagir com o protótipo atraves do Figma:
+Clique na imagem para interagir com o protótipo:
 
 <a href="https://www.figma.com/proto/iOhntvntL9UP6B0PPkYPYx/Gerenciamento-de-Aluguel?node-id=5113-692&t=lgqVfrqjWlEc9nEm-1"><img src="https://i.ibb.co/2YmPQ3JB/proto.png" alt="imagem do prototipo" border="0"></a>
 
