@@ -5,12 +5,14 @@ import { useRouter } from 'next/navigation'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [search, setSearch] = useState('')
+  const [id, setId] = useState('')
   const router = useRouter()
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    router.push(`/historic?q=${search}`)
+
+    if (!id) return
+    router.push(`/historic/${id}`)
     setMenuOpen(false)
   }
 
@@ -60,14 +62,14 @@ export default function Header() {
         </div>
 
         <div className="p-6 pt-0 flex flex-col gap-6">
-          <form onSubmit={handleSearch} className="flex flex-col gap-2">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
             <label className="text-sm text-gray-300 font-medium">
               Buscar Histórico:
               <input
                 type="text"
                 placeholder="ID do cliente..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                value={id}
+                onChange={(e) => setId(e.target.value)}
                 className="mt-1 px-3 py-2 rounded bg-gray-700 text-white placeholder:text-gray-400 w-full"
               />
             </label>

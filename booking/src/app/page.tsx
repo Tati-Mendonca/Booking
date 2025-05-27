@@ -1,5 +1,4 @@
 import { BookingCard } from '@/components/booking-card'
-import { calculateDays } from './utils/date'
 import { Booking } from '@/lib/type'
 import { getBookings } from '@/lib/bookings'
 import Input from '@/components/input-date'
@@ -52,9 +51,7 @@ export default async function HomePage({ searchParams }: PageProps) {
             <ul>
               {bookings.slice(0, 10).map((booking) => (
                 <li key={booking.id} className="my-3">
-                  <BookingCard
-                    booking={{ ...booking, days: calculateDays(booking.input, booking.output) }}
-                  />
+                  <BookingCard booking={booking} />
                 </li>
               ))}
             </ul>
