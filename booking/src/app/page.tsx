@@ -53,12 +53,7 @@ export default async function HomePage({ searchParams }: PageProps) {
               {bookings.slice(0, 10).map((booking) => (
                 <li key={booking.id} className="my-3">
                   <BookingCard
-                    id={booking.id}
-                    input={booking.input}
-                    output={booking.output}
-                    price={booking.price}
-                    customerName={booking.customerName}
-                    days={calculateDays(booking.input, booking.output)}
+                    booking={{ ...booking, days: calculateDays(booking.input, booking.output) }}
                   />
                 </li>
               ))}
