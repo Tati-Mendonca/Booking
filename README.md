@@ -3,7 +3,7 @@
 
 Uma solução simples para quem precisa organizar os agendamentos de aluguel do seu imóvel de temporada.
 
-<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExamt1a24xandsbmx4azV2cno2bWI0aHI0NjM0aDBramhrNGVneTl3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/P2tmcErYZWu95q3D3Q/giphy.gif">
+<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2FibW9xaDVyNHVmZzgwOWk5ZmRzbXUwMHlzZWZ4M21lbm56MnQ2bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vXrFv7BMVDB2MOCDlu/giphy.gif">
 
 ## Sobre o Projeto
 
