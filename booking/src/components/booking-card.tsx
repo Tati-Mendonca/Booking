@@ -34,7 +34,7 @@ export function BookingCard({ booking, showActions = true }: BookingCardProps) {
     <div className="w-full bg-gray-200 rounded-lg p-4 pt-2 shadow-sm">
       <header className="flex justify-between">
         <span>{customerName}</span>
-        <span className="text-sm">{calculateDays(input, output)}</span>
+        {calculateDays(input, output)} {calculateDays(input, output) <= 1 ? 'dia' : 'dias'}
       </header>
       <hr className="mb-2" />
       <section className="flex justify-between items-center text-sm text-gray-700">
