@@ -3,8 +3,9 @@
 
 Uma solução simples para quem precisa organizar os agendamentos de aluguel do seu imóvel de temporada.
 
-(Insira um gif da aplicação funcionando) 
-# Sobre o Projeto
+<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2FibW9xaDVyNHVmZzgwOWk5ZmRzbXUwMHlzZWZ4M21lbm56MnQ2bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vXrFv7BMVDB2MOCDlu/giphy.gif">
+
+## Sobre o Projeto
 
 Este projeto nasceu da minha vontade de ajudar familiares a manter o controle dos agendamentos do apartamento da família no litoral. Pois a rotina de anotar reservas em papéis soltos ou trocar informações por mensagens acabava gerando confusão, esquecimentos e retrabalho. Pensando nisso, desenvolvi esta aplicação com o objetivo de tornar o processo de reservas mais claro, eficiente e acessível. O Booking é uma ferramenta simples e intuitiva, ideal para pequenos locadores que desejam ter mais controle e organização — sem necessidade de lidar com soluções complexas.
 
